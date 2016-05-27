@@ -16,9 +16,6 @@ function MyDrone(scene, appearence) {
     this.ang_z = 0;
     this.ang = 0;
     //false
-    this.boolroda = 1;
-    this.time = Date.now();
-    this.moveFrente = false;
     
     this.drone.initBuffers();
 }

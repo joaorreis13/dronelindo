@@ -103,12 +103,12 @@ MyInterface.prototype.processKeyDown = function(event) {
 		case(73):
 		case(105):
 		//subir
-		this.scene.drone.move('Sobe');
+		this.scene.drone.move('Cima');
 		break;
 		case(74):
 		case(106):
 		//descer
-		this.scene.drone.move('Desce');
+		this.scene.drone.move('Baixo');
 		break;
 			
 	};
@@ -150,12 +150,12 @@ MyInterface.prototype.processKeyUp = function(event) {
 		case(73):
 		case(105):
 		//subir
-			this.scene.drone.para('Sobe');
+			this.scene.drone.para('Cima');
 		break;
 		case(74):
 		case(106):
 		//descer
-			this.scene.drone.para('Desce');
+			this.scene.drone.para('Baixo');
 		break;
 			
 			
