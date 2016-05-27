@@ -337,7 +337,7 @@ LightingScene.prototype.display = function() {
 LightingScene.prototype.update = function(currTime) {
 	if(a==0)
  	this.clock.update(currTime);
- 	//this.drone.update()
+ 	this.drone.update(currTime);
 };
 /*
 LightingScene.prototype.updateDrone = function() {

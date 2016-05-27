@@ -55,26 +55,6 @@ MyDrone.prototype.display = function() {
 	this.ang = this.ang + (alfa/90);
 };*/
 
-MyDrone.prototype.rotLeft = function() {
-    this.ang += Math.PI / 15;
-}
-;
-
-MyDrone.prototype.rotRight = function() {
-    this.ang -= Math.PI / 15;
-}
-;
-
-MyDrone.prototype.stopRotLeft = function() {
-    this.ang += Math.PI / 200;
-}
-;
-
-MyDrone.prototype.stopRotRight = function() {
-    this.ang -= Math.PI / 200;
-}
-;
-
 /*
 MyDrone.prototype.moveTras = function(){
 	this.x -= (Math.sin(this.ang))* (0.1/3);
@@ -91,6 +71,15 @@ MyDrone.prototype.moveBaixo = function(){
 };
 */
 MyDrone.prototype.move = function(direction) {
+    
+	if (direction == 'Esquerda')
+        if (this.rotLeft != true) {
+            this.rotLeft = true;
+        };
+    if (direction == 'Direita')
+        if (this.rotRight != true) {
+            this.rotRight = true;        
+        };
     if (direction == 'Frente')
         if (this.moveFrente != true) {
             this.moveFrente = true;
@@ -114,44 +103,59 @@ MyDrone.prototype.move = function(direction) {
 };
 
 MyDrone.prototype.para = function(direction){
+        
+	if (direction == 'Esquerda')
+        if (this.rotLeft == true) {
+            this.rotLeft = false;
+        };
+    if (direction == 'Direita')
+        if (this.rotRight == true) {
+            this.rotRight = false;  
+        };
     if (direction == 'Frente')
         if (this.moveFrente == true) {
             this.moveFrente = false;
 			//Inserir aqui as cenas das helices
-            }
+            };
     if (direction == 'Tras')
          if (this.moveTras == true){
              this.moveTras = false;
 			//Inserir aqui as cenas das helices
-             }
+             };
     if (direction == 'Cima')
          if (this.moveCima == true){
              this.moveCima = false;
 			//Inserir aqui as cenas das helices
-             }
+             };
     if (direction == 'Baixo')
          if (this.moveBaixo == true){
              this.moveBaixo = false;
 			//Inserir aqui as cenas das helices
-             }
+             };
 };
 
-
-MyDrone.prototype.move = function(x, y) {
-    this.x += (Math.sin(this.ang)) * (x / 3);
-    this.y += (y / 3);
-    this.z += (Math.cos(this.ang)) * (x / 3);
-}
-;
-
 MyDrone.prototype.update = function(t) {
-    var auxT = t - this.time;
-    this.time = t;
     
     if (this.moveFrente) {
         this.x += (Math.sin(this.ang)) * (0.1 / 3);
         this.z += (Math.cos(this.ang)) * (0.1 / 3);
 		};
+	
+	if(this.moveTras){
+		this.x -= (Math.sin(this.ang)) * (0.1 / 3);
+        this.z -= (Math.cos(this.ang)) * (0.1 / 3);	
+	};	
 
-
+	if(this.moveCima){
+		this.y += (0.1/3);
+	};
+	if(this.moveBaixo){
+		this.y -= (0.1/3);
+	};
+	if(this.rotLeft){
+	this.ang += Math.PI / 75;	
+	};
+	if(this.rotRight){
+	this.ang -= Math.PI / 75;	
+	};
 };

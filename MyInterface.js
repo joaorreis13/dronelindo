@@ -78,13 +78,13 @@ MyInterface.prototype.processKeyDown = function(event) {
 		//A & a
 		case (65):
 		case(97):
-			this.scene.drone.rotLeft();
+			this.scene.drone.move('Esquerda');
 			break;
 
 			//D & d
 		case(68):
 		case(100):
-			this.scene.drone.rotRight();
+			this.scene.drone.move('Direita');
 			break;
 		
 		//S & d
@@ -125,13 +125,13 @@ MyInterface.prototype.processKeyUp = function(event) {
 		//A & a
 		case (65):
 		case(97):
-		this.scene.drone.stopRotLeft();
+		this.scene.drone.para('Esquerda');
 			break;
 
 			//D & d
 		case(68):
 		case(100):
-		this.scene.drone.stopRotRight();
+		this.scene.drone.para('Direita');
 			break;
 			
 		//S & d
