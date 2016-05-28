@@ -121,6 +121,10 @@ MyDrone.prototype.update = function(t) {
     if (this.moveFrente) {
         this.x += (Math.sin(this.ang)) *this.scene.speed * (0.1 / 3);
         this.z += (Math.cos(this.ang)) * this.scene.speed * (0.1 / 3);
+		this.drone.helice_frente.updateMove(this.velocidade_helice_frente,t);
+		this.drone.helice_tras.updateMove(this.velocidade_helice_tras,t);
+		this.drone.helice_lado1.updateMove(this.velocidade_helice_lados,t);
+		this.drone.helice_lado2.updateMove(this.velocidade_helice_lados,t);
 		}
 	if(this.moveTras){
 		this.x -= (Math.sin(this.ang)) *this.scene.speed * (0.1 / 3);

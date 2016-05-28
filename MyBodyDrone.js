@@ -19,11 +19,6 @@
 	this.helice_lado2 = new MyBodyDroneHelice(this.scene,this.velocidade_helice_lados);
 	
 	
-
-
- if(typeof droneAppearance !== 'undefined'){
- 	this.setAppearance(droneAppearance);
- }
  this.initBuffers();
  };
 
