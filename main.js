@@ -23,7 +23,6 @@ serialInclude([
 	'MyDroneAppearance.js',
 	'MyBodyDroneBraco.js',
 	'MyBodyDronePerna.js',
-	'MyBodyDroneHelice.js',
 	'MyHelice.js',
 	
 	main=function() {

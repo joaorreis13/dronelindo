@@ -115,6 +115,7 @@ LightingScene.prototype.init = function(application) {
 	this.option1 = true;
 	this.option2 = false;
 	this.speed = 3;
+	this.helice_speed = 1;
 
 	this.Option1 = true;
 	this.Option2 = false;

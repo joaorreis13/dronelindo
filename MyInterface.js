@@ -52,7 +52,8 @@ CGFinterface.prototype.init.call(this, application);
 	// this.speed=3;
 	// min and max values can be specified as parameters
 	
-	this.gui.add(this.scene, 'speed', -5, 5);
+	this.gui.add(this.scene, 'speed', 0.1, 5);
+	this.gui.add(this.scene, 'helice_speed', 0.1, 2);
 
 
 
@@ -79,12 +80,14 @@ MyInterface.prototype.processKeyDown = function(event) {
 		case (65):
 		case(97):
 			this.scene.drone.move('Esquerda');
+			this.scene.drone.updateVelocidadeHelice(0.2,0.2,-10);
 			break;
 
 			//D & d
 		case(68):
 		case(100):
 			this.scene.drone.move('Direita');
+			this.scene.drone.updateVelocidadeHelice(0.2,0.2,-10);
 			break;
 		
 		//S & d
@@ -92,24 +95,30 @@ MyInterface.prototype.processKeyDown = function(event) {
 		case(115):
 			//anda para tras
 			this.scene.drone.move('Tras');
+			this.scene.drone.updateVelocidadeHelice(0.2,10,-1);
 			break;
 		//W & w
 		case(87):
 		case(119):
 			//anda para a frente
 			this.scene.drone.move('Frente');
+			this.scene.drone.updateVelocidadeHelice(10,0.2,-1);
 			break;
 		//I & i
 		case(73):
 		case(105):
 		//subir
 		this.scene.drone.move('Cima');
+		this.scene.drone.updateVelocidadeHelice(1,1,-1);
 		break;
 		case(74):
 		case(106):
 		//descer
 		this.scene.drone.move('Baixo');
+		this.scene.drone.updateVelocidadeHelice(1,1,-1);
 		break;
+		default:
+		this.scene.drone.updateVelocidadeHelice(1,1,-1);
 			
 	};
 
@@ -126,12 +135,15 @@ MyInterface.prototype.processKeyUp = function(event) {
 		case (65):
 		case(97):
 		this.scene.drone.para('Esquerda');
+		this.scene.drone.updateVelocidadeHelice(1,1,-1);
 			break;
+		
 
 			//D & d
 		case(68):
 		case(100):
 		this.scene.drone.para('Direita');
+		this.scene.drone.updateVelocidadeHelice(1,1,-1);
 			break;
 			
 		//S & d
@@ -139,25 +151,30 @@ MyInterface.prototype.processKeyUp = function(event) {
 		case(115):
 			//anda para tras
 			this.scene.drone.para('Tras');
+			this.scene.drone.updateVelocidadeHelice(1,1,-1);
 			break;
 		//W & w
 		case(87):
 		case(119):
 			//anda para a frente
 			this.scene.drone.para('Frente');
+			this.scene.drone.updateVelocidadeHelice(1,1,-1);
 			break;
 		//I & i
 		case(73):
 		case(105):
 		//subir
 			this.scene.drone.para('Cima');
+			this.scene.drone.updateVelocidadeHelice(1,1,-1);
 		break;
 		case(74):
 		case(106):
 		//descer
 			this.scene.drone.para('Baixo');
+			this.scene.drone.updateVelocidadeHelice(1,1,-1);
 		break;
-			
+			default:
+			this.scene.drone.updateVelocidadeHelice(1,1,-1);
 			
 	};
 

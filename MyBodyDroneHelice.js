@@ -7,7 +7,8 @@ function MyBodyDroneHelice(scene,vel){
 	CGFobject.call(this, scene);
 	this.helice = new MyHelice(this.scene);
 	this.last_time = 0;
-	this.intervalo = 0;
+	this.delta = 0;
+	this.first =0;
 	this.angle = 0;
 	this.velocidade = vel;
 }
@@ -22,13 +23,14 @@ MyBodyDroneHelice.prototype.display = function(){
 
 MyBodyDroneHelice.prototype.updateMove = function(velocidade,currTime)
 {	
-this.velocidade = velocidade;
-if(this.last_time == 0){
-	this.intervalo = 0;
-}
-else {
-	this.intervalo = currTime - this.last_time;
-}
-	this.last_time = currTime;
-	this.angle = this.angle + (Math.PI/180)*(360 / ((this.velocidade/60) * (this.intervalo / 100)));
+this.delta = currTime - this.lastCurrTime;
+    this.lastCurrTime = currTime;
+
+	if (this.first == 0)
+	{
+		this.delta = 0;
+		this.first = 1;
+	}
+ 	this.angle += (this.velocidade) * (this.delta / 1000);
+
 }
