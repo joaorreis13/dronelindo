@@ -2,8 +2,8 @@
  * MyBodyDrone
  * @constructor
  */
-
- function MyBodyDrone(scene, droneAppearance)  {
+   var degToRad = Math.PI /180;
+ function MyBodyDrone(scene, droneAppearance,inclinacao)  {
   CGFobject.call(this,scene);
 
  
@@ -15,7 +15,7 @@
 	this.helice_lado1 = new MyHelice(this.scene,this.velocidade_helice_lados);
 	this.helice_lado2 = new MyHelice(this.scene,this.velocidade_helice_lados);
 	
-	
+	this.inclinacao = inclinacao;
 	
  this.initBuffers();
  };
@@ -26,7 +26,6 @@
 
  MyBodyDrone.prototype.display = function() {
  	//this.lamp.display();
-
 
  	//Helice para Braco 1
 	this.scene.pushMatrix();
@@ -69,7 +68,6 @@
 	this.braco.display();
 	this.scene.popMatrix();
 
- 
  };
 
  MyBodyDrone.prototype.setAppearance = function(droneAppearance) {
@@ -84,11 +82,4 @@
 		this.corpoAppearance.setShininess(120);
 		this.corpoAppearance.setDiffuse(0.8, 0.8, 0.8, 1);
 }
-
-
-
-
-
-
-
 

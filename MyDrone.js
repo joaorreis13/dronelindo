@@ -2,6 +2,7 @@
  * MyDrone
  * @constructor
  */
+   var degToRad = Math.PI /180;
 function MyDrone(scene, appearence) {
     CGFobject.call(this, scene);
         this.velocidade_helice_tras = 1;
@@ -9,13 +10,9 @@ function MyDrone(scene, appearence) {
 	this.velocidade_helice_frente = 1;
 
     this.appearence = appearence;
-    this.helice_frente = new MyHelice(this.scene,this.velocidade_helice_frente);
-	this.helice_tras = new MyHelice(this.scene,this.velocidade_helice_tras);
-	this.helice_lado1 = new MyHelice(this.scene,this.velocidade_helice_lados);
-	this.helice_lado2 = new MyHelice(this.scene,this.velocidade_helice_lados);
-     
+     	this.pitch = 0;
 
-    this.drone = new MyBodyDrone(this.scene,this.appearence);
+    this.drone = new MyBodyDrone(this.scene,this.appearence,this.pitch);
     
     this.x = 7.5;
     this.y = 5;
@@ -38,12 +35,13 @@ MyDrone.prototype = Object.create(CGFobject.prototype);
 MyDrone.prototype.constructor = MyDrone;
 
 MyDrone.prototype.display = function() {
-    this.scene.pushMatrix();
+
     this.scene.translate(this.x, this.y, this.z);
     this.scene.rotate(this.ang, this.ang_x, this.ang_y, this.ang_z);
+    this.scene.pushMatrix();
+    this.scene.rotate(this.pitch*degToRad,1,0,0);
     this.drone.display();
     this.scene.popMatrix();
-
 };
 
 MyDrone.prototype.updateVelocidadaHelice = function(velocidade_frente, velocidade_tras, velocidade_lados){
@@ -51,6 +49,16 @@ MyDrone.prototype.updateVelocidadaHelice = function(velocidade_frente, velocidad
 	this.velocidade_helice_lados = velocidade_lados;
 	this.velocidade_helice_frente = velocidade_frente;
 }
+
+MyDrone.prototype.updatePitch = function(angulo){
+	if(this.pitch == 0)
+	this.pitch = angulo;
+	if(this.pitch > -20 && this.pitch < 20)
+		this.pitch +=angulo;
+	if(angulo == 0)
+		this.pitch = 0;
+}
+
 
 MyDrone.prototype.move = function(direction) {
     
@@ -118,57 +126,34 @@ MyDrone.prototype.updateVelocidadeHelice = function(v_frente, v_tras,v_lados){
 }
 
 
+
 MyDrone.prototype.update = function(currTime) {
     
     if (this.moveFrente) {
         this.x += (Math.sin(this.ang)) *this.scene.speed*0.03;
         this.z += (Math.cos(this.ang)) * this.scene.speed*0.03;
-        this.drone.helice_frente.updateMove(this.velocidade_helice_frente,currTime);
-    this.drone.helice_tras.updateMove(this.velocidade_helice_tras,currTime);
-    this.drone.helice_lado1.updateMove(this.velocidade_helice_lados,currTime);
-    this.drone.helice_lado2.updateMove(this.velocidade_helice_lados,currTime);
-        
     }
 	if(this.moveTras){
 		this.x -= (Math.sin(this.ang)) *this.scene.speed*0.03;
         this.z -= (Math.cos(this.ang)) * this.scene.speed*0.03;	
-        this.drone.helice_frente.updateMove(this.velocidade_helice_frente,currTime);
-    this.drone.helice_tras.updateMove(this.velocidade_helice_tras,currTime);
-    this.drone.helice_lado1.updateMove(this.velocidade_helice_lados,currTime);
-    this.drone.helice_lado2.updateMove(this.velocidade_helice_lados,currTime);
 	}
 
 	if(this.moveCima){
 		this.y += this.scene.speed*0.03;
-		this.drone.helice_frente.updateMove(this.velocidade_helice_frente,currTime);
-    this.drone.helice_tras.updateMove(this.velocidade_helice_tras,currTime);
-    this.drone.helice_lado1.updateMove(this.velocidade_helice_lados,currTime);
-    this.drone.helice_lado2.updateMove(this.velocidade_helice_lados,currTime);
 	}
 	if(this.moveBaixo){
 		this.y -= this.scene.speed*0.03;
-	this.drone.helice_frente.updateMove(this.velocidade_helice_frente,currTime);
-    this.drone.helice_tras.updateMove(this.velocidade_helice_tras,currTime);
-    this.drone.helice_lado1.updateMove(this.velocidade_helice_lados,currTime);
-    this.drone.helice_lado2.updateMove(this.velocidade_helice_lados,currTime);
 	}
 	if(this.rotLeft){
 	this.ang +=this.scene.speed * Math.PI / 75;	
-	this.drone.helice_frente.updateMove(this.velocidade_helice_frente,currTime);
-    this.drone.helice_tras.updateMove(this.velocidade_helice_tras,currTime);
-    this.drone.helice_lado1.updateMove(this.velocidade_helice_lados,currTime);
-    this.drone.helice_lado2.updateMove(this.velocidade_helice_lados,currTime);
 	}
 	if(this.rotRight){
 	this.ang -= this.scene.speed * Math.PI / 75;
-	this.drone.helice_frente.updateMove(this.velocidade_helice_frente,currTime);
-    this.drone.helice_tras.updateMove(this.velocidade_helice_tras,currTime);
-    this.drone.helice_lado1.updateMove(this.velocidade_helice_lados,currTime);
-    this.drone.helice_lado2.updateMove(this.velocidade_helice_lados,currTime);
 	};
 	this.drone.helice_frente.updateMove(this.velocidade_helice_frente,currTime);
     this.drone.helice_tras.updateMove(this.velocidade_helice_tras,currTime);
     this.drone.helice_lado1.updateMove(this.velocidade_helice_lados,currTime);
     this.drone.helice_lado2.updateMove(this.velocidade_helice_lados,currTime);
+
 };
 
