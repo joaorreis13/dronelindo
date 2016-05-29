@@ -22,26 +22,27 @@
 
 	var angle_height = Math.PI/2/this.stacks;
 	var angle = 2*Math.PI/this.slices;
-	//ang_pi = 90ยบ
+	
 	var ang_pi = Math.PI/2;
 	
 	for (var stack=0; stack <= this.stacks;stack++)
 	{
+		var angulo = ang_pi-stack*angle_height;
 		for ( var slice=0; slice < this.slices;slice++)
 		{
-			//vertices e normais
-			this.vertices.push(Math.sin(ang_pi-stack*angle_height)*Math.cos(slice*angle), Math.sin(ang_pi-stack*angle_height)*Math.sin(slice*angle), Math.cos(ang_pi-stack*angle_height));
-			this.normals.push(Math.sin(ang_pi-stack*angle_height)*Math.cos(slice*angle), Math.sin(ang_pi-stack*angle_height)*Math.sin(slice*angle), Math.cos(ang_pi-stack*angle_height));
+			this.vertices.push(Math.sin(angulo)*Math.cos(slice*angle), Math.sin(angulo)*Math.sin(slice*angle), Math.cos(angulo));
+			this.normals.push(Math.sin(angulo)*Math.cos(slice*angle), Math.sin(angulo)*Math.sin(slice*angle), Math.cos(angulo));
 		}
 	}
 	
 
 	for (var stack=0; stack < this.stacks;stack++)
 	{
-		var slicestack = this.slices*stack;
+		
 		
 		for ( var slice=0; slice < this.slices;slice++)
 		{ 
+		var slicestack = this.slices*stack;
 			if(slice +1 == this.slices)
 			{
 				this.indices.push(slicestack+slice, slicestack+this.slices+slice+1-this.slices,slicestack+this.slices+slice);

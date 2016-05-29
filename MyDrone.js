@@ -10,17 +10,17 @@ function MyDrone(scene, appearence) {
 	this.velocidade_helice_frente = 1;
 
     this.appearence = appearence;
-     	this.pitch = 0;
+     	this.inclinacao = 0;
 
-    this.drone = new MyBodyDrone(this.scene,this.appearence,this.pitch);
+    this.drone = new MyBodyDrone(this.scene,this.appearence);
     
     this.x = 7.5;
     this.y = 5;
     this.z = 7.5;
-    this.ang_x = 0;
-    this.ang_y = 1;
-    this.ang_z = 0;
     this.ang = 0;
+    this.last_time = 0;
+	this.delta = 0;
+	this.first =0;
 
   
     
@@ -37,22 +37,22 @@ MyDrone.prototype.constructor = MyDrone;
 MyDrone.prototype.display = function() {
 
     this.scene.translate(this.x, this.y, this.z);
-    this.scene.rotate(this.ang, this.ang_x, this.ang_y, this.ang_z);
+    this.scene.rotate(this.ang, 0, 1, 0);
     this.scene.pushMatrix();
-    this.scene.rotate(this.pitch*degToRad,1,0,0);
+    this.scene.rotate(this.inclinacao*degToRad,1,0,0);
     this.drone.display();
     this.scene.popMatrix();
 };
 
 
 
-MyDrone.prototype.updatePitch = function(angulo){
-	if(this.pitch == 0)
-	this.pitch = angulo;
-	if(this.pitch > -20 && this.pitch < 20)
-		this.pitch +=angulo;
+MyDrone.prototype.updateInclinacao = function(angulo){
+	if(this.inclinacao == 0)
+	this.inclinacao = angulo;
+	if(this.inclinacao > -25 && this.inclinacao < 25)
+		this.inclinacao +=angulo;
 	if(angulo == 0)
-		this.pitch = 0;
+		this.inclinacao = 0;
 }
 
 
@@ -116,35 +116,43 @@ MyDrone.prototype.para = function(direction){
              };
 };
 MyDrone.prototype.updateVelocidadeHelice = function(v_frente, v_tras,v_lados){
-	this.velocidade_helice_frente = v_frente;// *(1/this.scene.helice_speed);
-	this.velocidade_helice_tras = v_tras;//*(1/this.scene.helice_speed);
-	this.velocidade_helice_lados = v_lados;//*(1/this.scene.helice_speed);
+	this.velocidade_helice_frente = v_frente;
+	this.velocidade_helice_tras = v_tras;
+	this.velocidade_helice_lados = v_lados;
 }
 
 
 
 MyDrone.prototype.update = function(currTime) {
-    
+    this.delta = currTime - this.lastCurrTime;
+    this.lastCurrTime = currTime;
+
+	if (this.first == 0)
+	{
+		this.delta = 0;
+		this.first = 1;
+	}
+
     if (this.moveFrente) {
-        this.x += (Math.sin(this.ang)) *this.scene.speed*0.03;
-        this.z += (Math.cos(this.ang)) * this.scene.speed*0.03;
+        this.x += (Math.sin(this.ang)) * this.scene.speed*(this.delta/1000);
+        this.z += (Math.cos(this.ang)) * this.scene.speed*(this.delta/1000);
     }
 	if(this.moveTras){
-		this.x -= (Math.sin(this.ang)) *this.scene.speed*0.03;
-        this.z -= (Math.cos(this.ang)) * this.scene.speed*0.03;	
+		this.x -= (Math.sin(this.ang)) *this.scene.speed*(this.delta/1000);
+        this.z -= (Math.cos(this.ang)) * this.scene.speed*(this.delta/1000);	
 	}
 
 	if(this.moveCima){
-		this.y += this.scene.speed*0.03;
+		this.y += this.scene.speed*(this.delta/1000);
 	}
 	if(this.moveBaixo){
-		this.y -= this.scene.speed*0.03;
+		this.y -= this.scene.speed*(this.delta/1000);
 	}
 	if(this.rotLeft){
-	this.ang +=this.scene.speed * Math.PI / 75;	
+	this.ang += (this.scene.speed/60)*this.delta * Math.PI / 75;	
 	}
 	if(this.rotRight){
-	this.ang -= this.scene.speed * Math.PI / 75;
+	this.ang -= (this.scene.speed/60)*this.delta * Math.PI / 75;
 	};
 	this.drone.helice_frente.updateMove(this.velocidade_helice_frente,currTime);
     this.drone.helice_tras.updateMove(this.velocidade_helice_tras,currTime);

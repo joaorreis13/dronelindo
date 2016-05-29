@@ -3,7 +3,7 @@
  * @constructor
  */
    var degToRad = Math.PI /180;
- function MyBodyDrone(scene, droneAppearance,inclinacao)  {
+ function MyBodyDrone(scene, droneAppearance)  {
   CGFobject.call(this,scene);
 
  
@@ -15,7 +15,6 @@
 	this.helice_lado1 = new MyHelice(this.scene,this.velocidade_helice_lados);
 	this.helice_lado2 = new MyHelice(this.scene,this.velocidade_helice_lados);
 	
-	this.inclinacao = inclinacao;
 	
  this.initBuffers();
  };
