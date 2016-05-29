@@ -96,7 +96,7 @@ MyInterface.prototype.processKeyDown = function(event) {
 			//anda para tras
 			this.scene.drone.move('Tras');
 			this.scene.drone.updateVelocidadeHelice(0.2,10,-1);
-			this.scene.drone.updatePitch(-10);
+			this.scene.drone.updatePitch(-1);
 			break;
 		//W & w
 		case(87):
@@ -104,7 +104,7 @@ MyInterface.prototype.processKeyDown = function(event) {
 			//anda para a frente
 			this.scene.drone.move('Frente');
 			this.scene.drone.updateVelocidadeHelice(10,0.2,-1);
-			this.scene.drone.updatePitch(10);
+			this.scene.drone.updatePitch(1);
 			break;
 		//I & i
 		case(73):

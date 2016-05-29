@@ -58,6 +58,6 @@ this.delta = currTime - this.lastCurrTime;
 		this.delta = 0;
 		this.first = 1;
 	}
- 	this.angle = this.angle + (360/(velocidade/60)*degToRad * (this.delta / 1000));
+ 	this.angle = this.angle + (360/(velocidade/60)*degToRad * (this.delta / 1000)) *this.scene.helice_speed;
 
 }

@@ -44,11 +44,7 @@ MyDrone.prototype.display = function() {
     this.scene.popMatrix();
 };
 
-MyDrone.prototype.updateVelocidadaHelice = function(velocidade_frente, velocidade_tras, velocidade_lados){
-	this.velocidade_helice_tras = velocidade_tras;
-	this.velocidade_helice_lados = velocidade_lados;
-	this.velocidade_helice_frente = velocidade_frente;
-}
+
 
 MyDrone.prototype.updatePitch = function(angulo){
 	if(this.pitch == 0)
@@ -120,9 +116,9 @@ MyDrone.prototype.para = function(direction){
              };
 };
 MyDrone.prototype.updateVelocidadeHelice = function(v_frente, v_tras,v_lados){
-	this.velocidade_helice_frente = v_frente;
-	this.velocidade_helice_tras = v_tras;
-	this.velocidade_helice_lados = v_lados;
+	this.velocidade_helice_frente = v_frente;// *(1/this.scene.helice_speed);
+	this.velocidade_helice_tras = v_tras;//*(1/this.scene.helice_speed);
+	this.velocidade_helice_lados = v_lados;//*(1/this.scene.helice_speed);
 }
 
 
