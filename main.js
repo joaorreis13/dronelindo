@@ -24,6 +24,7 @@ serialInclude([
 	'MyBodyDroneBraco.js',
 	'MyBodyDronePerna.js',
 	'MyHelice.js',
+	'MyHook.js',
 	
 	main=function() {
 		var app = new CGFapplication(document.body);
