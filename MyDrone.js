@@ -8,10 +8,11 @@ function MyDrone(scene, appearence) {
         this.velocidade_helice_tras = 1;
 	this.velocidade_helice_lados = -1;
 	this.velocidade_helice_frente = 1;
-
     this.appearence = appearence;
      	this.inclinacao = 0;
-
+	//caixa para apanhar
+	this.caixa = new MyUnitCubeQuad(this.scene);
+ 
     this.drone = new MyBodyDrone(this.scene,this.appearence);
     
 	//Adicionar hook
@@ -39,18 +40,28 @@ MyDrone.prototype = Object.create(CGFobject.prototype);
 MyDrone.prototype.constructor = MyDrone;
 
 MyDrone.prototype.display = function() {
-	
+
     this.scene.translate(this.x, this.y, this.z);
     this.scene.rotate(this.ang, 0, 1, 0);
     this.scene.pushMatrix();
     this.scene.rotate(this.inclinacao*degToRad,1,0,0);
     this.drone.display();
     this.scene.popMatrix();
-
+	
     this.hook.display();
 };
 
+MyDrone.prototype.boxdisplay=function(){
+	
+	this.scene.pushMatrix();
+	this.scene.translate(4,2,4);
+	this.caixa.display();
+	this.scene.popMatrix();
+	/*this.boxX
+	this.boxY
+	this.boxZ*/
 
+};
 
 MyDrone.prototype.updateInclinacao = function(angulo){
 	if(this.inclinacao == 0)

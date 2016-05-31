@@ -330,7 +330,10 @@ LightingScene.prototype.display = function() {
 	this.drone.display();
 	this.popMatrix();
 
-
+	//BOX
+	this.pushMatrix();
+	this.drone.boxdisplay();
+	this.popMatrix();
 	// ---- END Primitive drawing section
 
 };
