@@ -121,13 +121,13 @@ MyInterface.prototype.processKeyDown = function(event) {
 		break;
 		
 		//Sobe Gancho		
-		case(112):
-		case(80):
+		case(76):
+		case(108):
 		this.scene.drone.move('Estica');
 		break;
 		//Desce Gancho
-		case(76):
-		case(108):
+		case(112):
+		case(80):		
 		this.scene.drone.move('Encolhe');
 		break;	
 		default:
@@ -189,13 +189,13 @@ MyInterface.prototype.processKeyUp = function(event) {
 		break;
 		
 		//Sobe Gancho		
-		case(112):
-		case(80):
+		case(76):
+		case(108):
 		this.scene.drone.para('Estica');
 		break;
 		//Desce Gancho
-		case(76):
-		case(108):
+		case(112):
+		case(80):
 		this.scene.drone.para('Encolhe');
 		break;	
 			default:
