@@ -28,7 +28,10 @@ MyHook.prototype.esticaHook = function(direction){
 
  MyHook.prototype.display = function() {
 
+
    this.scene.pushMatrix();
+   this.scene.rotate(Math.PI,0,0,1); 
+   this.scene.translate(0,this.estica/2,0);
    this.scene.rotate(Math.PI/2,1,0,0);
    this.scene.scale(0.1,0.1,this.estica); // ultimo 1 por estica 
    this.hook.display();
