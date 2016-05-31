@@ -115,7 +115,7 @@ MyInterface.prototype.processKeyDown = function(event) {
 		break;
 		case(74):
 		case(106):
-		//descer
+		//descer j & J
 		this.scene.drone.move('Baixo');
 		this.scene.drone.updateVelocidadeHelice(1,1,-1);
 		break;
@@ -197,7 +197,7 @@ MyInterface.prototype.processKeyUp = function(event) {
 		case(112):
 		case(80):
 		this.scene.drone.para('Encolhe');
-		break;	
+		break;
 			default:
 			this.scene.drone.updateVelocidadeHelice(1,1,-1);
 			

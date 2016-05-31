@@ -2,13 +2,16 @@
  * MyHook
  * @constructor
  */
- function MyHook(scene) {
+ function MyHook(scene,x,y,z) {
  	CGFobject.call(this, scene);
 
   this.gancho = new MyUnitCubeQuad(this.scene);
   this.hook = new MyCylinder(this.scene, 3, 1);
 
   this.estica=1;
+  this.x = x;
+  this.y = y-0.5 - this.estica;
+  this.z = z;
  };
 
  MyHook.prototype = Object.create(CGFobject.prototype);
@@ -44,3 +47,14 @@ MyHook.prototype.esticaHook = function(direction){
    this.gancho.display();
    this.scene.popMatrix();
  }
+
+
+MyHook.prototype.getPosition = function(){
+  this.position = {};
+  
+    position[0] = this.x;
+    position[1] = this.y;;
+    position[2] = this.z;
+  return this.position;
+
+}

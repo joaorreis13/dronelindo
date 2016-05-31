@@ -3,22 +3,20 @@
  * @constructor
  */
    var degToRad = Math.PI /180;
-function MyDrone(scene, appearence) {
+function MyDrone(scene) {
     CGFobject.call(this, scene);
-        this.velocidade_helice_tras = 1;
+
+    this.velocidade_helice_tras = 1;
 	this.velocidade_helice_lados = -1;
 	this.velocidade_helice_frente = 1;
-    this.appearence = appearence;
-     	this.inclinacao = 0;
-	//caixa para apanhar
-	this.caixa = new MyUnitCubeQuad(this.scene);
- 
-    this.drone = new MyBodyDrone(this.scene,this.appearence);
+
+    this.inclinacao = 0;
+    //caixa para apanhar
+ 	this.caixa = new MyUnitCubeQuad(this.scene);
+
+    this.drone = new MyBodyDrone(this.scene);
+   
     
-	//Adicionar hook
-
-	this.hook = new MyHook(this.scene);
-
     this.x = 7.5;
     this.y = 5;
     this.z = 7.5;
@@ -27,9 +25,11 @@ function MyDrone(scene, appearence) {
 	this.delta = 0;
 	this.first =0;
 
+	this.hook = new MyHook(this.scene,this.x,this.y,this.z);
+
   
     
-    this.drone.initBuffers();
+    this.initBuffers();
 }
 ;
 
@@ -42,26 +42,26 @@ MyDrone.prototype.constructor = MyDrone;
 MyDrone.prototype.display = function() {
 
     this.scene.translate(this.x, this.y, this.z);
-    this.scene.rotate(this.ang, 0, 1, 0);
-    this.scene.pushMatrix();
-    this.scene.rotate(this.inclinacao*degToRad,1,0,0);
-    this.drone.display();
+		this.scene.rotate(this.ang, 0, 1, 0);
+		this.scene.pushMatrix();
+		this.scene.rotate(this.inclinacao*degToRad,1,0,0);
+		this.drone.display();
     this.scene.popMatrix();
-	
+
     this.hook.display();
 };
 
 MyDrone.prototype.boxdisplay=function(){
-	
-	this.scene.pushMatrix();
-	this.scene.translate(4,2,4);
-	this.caixa.display();
-	this.scene.popMatrix();
-	/*this.boxX
-	this.boxY
-	this.boxZ*/
-
-};
+ 	
+ 	this.scene.pushMatrix();
+ 	this.scene.translate(4,2,4);
+ 	this.caixa.display();
+ 	this.scene.popMatrix();
+ 	/*this.boxX
+ 	this.boxY
+ 	this.boxZ*/
+  
+ };
 
 MyDrone.prototype.updateInclinacao = function(angulo){
 	if(this.inclinacao == 0)
@@ -71,6 +71,7 @@ MyDrone.prototype.updateInclinacao = function(angulo){
 	if(angulo == 0)
 		this.inclinacao = 0;
 }
+
 
 
 MyDrone.prototype.move = function(direction) {
@@ -152,8 +153,8 @@ MyDrone.prototype.updateVelocidadeHelice = function(v_frente, v_tras,v_lados){
 	this.velocidade_helice_frente = v_frente;
 	this.velocidade_helice_tras = v_tras;
 	this.velocidade_helice_lados = v_lados;
-
 }
+
 
 
 MyDrone.prototype.update = function(currTime) {
@@ -174,21 +175,21 @@ MyDrone.prototype.update = function(currTime) {
     if (this.moveFrente) {
         this.x += (Math.sin(this.ang)) * this.scene.speed*(this.delta/1000);
         this.z += (Math.cos(this.ang)) * this.scene.speed*(this.delta/1000);
-    }
+    };
 	if(this.moveTras){
 		this.x -= (Math.sin(this.ang)) *this.scene.speed*(this.delta/1000);
         this.z -= (Math.cos(this.ang)) * this.scene.speed*(this.delta/1000);	
-	}
+	};
 
 	if(this.moveCima){
 		this.y += this.scene.speed*(this.delta/1000);
-	}
+	};
 	if(this.moveBaixo){
 		this.y -= this.scene.speed*(this.delta/1000);
-	}
+	};
 	if(this.rotLeft){
 	this.ang += (this.scene.speed/60)*this.delta * Math.PI / 75;	
-	}
+	};
 	if(this.rotRight){
 	this.ang -= (this.scene.speed/60)*this.delta * Math.PI / 75;
 	};
