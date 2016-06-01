@@ -35,6 +35,76 @@ function MyDrone(scene, appearence) {
 	this.caixa = new MyBox(this.scene,this.boxX,this.boxY,this.boxZ);
     this.target = new MyTarget(this.scene,this.targetX,this.targetY,this.targetZ);
     this.drone.initBuffers();
+	
+
+	//Texturas
+	this.bodyMat=[new CGFappearance(this.scene), new CGFappearance(this.scene), new CGFappearance(this.scene)];
+ 	this.armMat=[new CGFappearance(this.scene), new CGFappearance(this.scene), new CGFappearance(this.scene)];
+ 	this.heliceMat=[new CGFappearance(this.scene), new CGFappearance(this.scene), new CGFappearance(this.scene)];
+ 	this.legMat=[new CGFappearance(this.scene), new CGFappearance(this.scene), new CGFappearance(this.scene)];
+
+ 	this.bodyMat[0].setDiffuse(1,1,1,1);
+	this.bodyMat[0].setSpecular(0.5,0.5,0.5,1);
+	this.bodyMat[0].setShininess(1);
+	this.bodyMat[0].loadTexture("verde_corpo.jpg")
+	
+	this.legMat[0].setDiffuse(1,1,1,1);
+	this.legMat[0].setSpecular(0.5,0.5,0.5,1);
+	this.legMat[0].setShininess(1);
+	this.legMat[0].loadTexture("verde_perna.jpg")
+
+	this.heliceMat[0].setDiffuse(1,1,1,1);
+	this.heliceMat[0].setSpecular(0.5,0.5,0.5,1);
+	this.heliceMat[0].setShininess(1);
+	this.heliceMat[0].loadTexture("verde_helice.jpg")
+
+	this.armMat[0].setDiffuse(1,1,1,1);
+	this.armMat[0].setSpecular(0.5,0.5,0.5,1);
+	this.armMat[0].setShininess(1);
+	this.armMat[0].loadTexture("verde_braco.png")   
+    
+ 	this.bodyMat[1].setDiffuse(1,1,1,1);
+	this.bodyMat[1].setSpecular(0.5,0.5,0.5,1);
+	this.bodyMat[1].setShininess(1);
+	this.bodyMat[1].loadTexture("amarelo.png")
+
+	this.legMat[1].setDiffuse(1,1,1,1);
+	this.legMat[1].setSpecular(0.5,0.5,0.5,1);
+	this.legMat[1].setShininess(1);
+	this.legMat[1].loadTexture("amarelo.png")
+
+	this.heliceMat[1].setDiffuse(1,1,1,1);
+	this.heliceMat[1].setSpecular(0.5,0.5,0.5,1);
+	this.heliceMat[1].setShininess(1);
+	this.heliceMat[1].loadTexture("amarelo.png")
+
+	this.armMat[1].setDiffuse(1,1,1,1);
+	this.armMat[1].setSpecular(0.5,0.5,0.5,1);
+	this.armMat[1].setShininess(1);
+	this.armMat[1].loadTexture("amarelo.png")
+
+ 	this.bodyMat[2].setDiffuse(1,1,1,1);
+	this.bodyMat[2].setSpecular(0.5,0.5,0.5,1);
+	this.bodyMat[2].setShininess(1);
+	this.bodyMat[2].loadTexture("azul_corpo.png")
+
+	this.legMat[2].setDiffuse(1,1,1,1);
+	this.legMat[2].setSpecular(0.5,0.5,0.5,1);
+	this.legMat[2].setShininess(1);
+	this.legMat[2].loadTexture("azul_perna.png")
+
+	this.heliceMat[2].setDiffuse(1,1,1,1);
+	this.heliceMat[2].setSpecular(0.5,0.5,0.5,1);
+	this.heliceMat[2].setShininess(1);
+	this.heliceMat[2].loadTexture("azul_helice.jpg")
+
+	this.armMat[2].setDiffuse(1,1,1,1);
+	this.armMat[2].setSpecular(0.5,0.5,0.5,1);
+	this.armMat[2].setShininess(1);
+	this.armMat[2].loadTexture("azul.png")
+	
+ 
+
 }
 ;
 
@@ -50,8 +120,10 @@ MyDrone.prototype.display = function() {
     this.scene.rotate(this.ang, 0, 1, 0);
     this.scene.pushMatrix();
     this.scene.rotate(this.inclinacao*degToRad,1,0,0);
+    //this.bodyMat[this.scene.Textures].apply();
     this.drone.display();
     this.scene.popMatrix();
+    this.
     this.hook.display();
     this.scene.popMatrix();
 	this.scene.pushMatrix();
