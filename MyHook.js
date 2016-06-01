@@ -2,16 +2,13 @@
  * MyHook
  * @constructor
  */
- function MyHook(scene,x,y,z) {
+ function MyHook(scene) {
  	CGFobject.call(this, scene);
 
   this.gancho = new MyUnitCubeQuad(this.scene);
   this.hook = new MyCylinder(this.scene, 3, 1);
 
   this.estica=1;
-  this.x = x;
-  this.y = y-0.5 - this.estica;
-  this.z = z;
  };
 
  MyHook.prototype = Object.create(CGFobject.prototype);
@@ -24,7 +21,7 @@ MyHook.prototype.esticaHook = function(direction){
       if(this.estica > 0.3)//distancia minima 
         this.estica -= 0.1;
     }
-    if(direction == 1) //estica
+    if(direction == 1) //estica se possivel ver a altura do drone e limitar distancia solo
     this.estica += 0.1;
   }
 
@@ -47,14 +44,12 @@ MyHook.prototype.esticaHook = function(direction){
    this.gancho.display();
    this.scene.popMatrix();
  }
+ 
+MyHook.prototype.getHookPos = function(){
+	this.position = {};
 
-
-MyHook.prototype.getPosition = function(){
-  this.position = {};
-  
-    position[0] = this.x;
-    position[1] = this.y;;
-    position[2] = this.z;
-  return this.position;
-
+	this.position[0] = this.x;
+	this.position[1] = this.y - this.hook.estica -0,5;
+	this.position[2] = this.z;
+	return this.position;
 }

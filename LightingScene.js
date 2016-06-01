@@ -40,12 +40,9 @@ LightingScene.prototype.init = function(application) {
 	this.cylinder = new MyCylinder(this, 20, 20);
 	this.clock = new MyClock(this, 12, 1);
 	
-	this.droneAppearanceList = {Tropa: 0, Amarelo: 1, Azul: 2};
-	this.currDroneAppearance = 0;
-
 
 	//this.drone = new MyDrone(this);
-	this.drone = new MyDrone(this);
+	this.drone = new MyDrone(this,this.currDroneAppearance);
 	
 	// Materials
 	this.materialDefault = new CGFappearance(this);
@@ -125,8 +122,17 @@ LightingScene.prototype.init = function(application) {
 	this.Option3 = false;
 
 	
-
+	this.droneAppearanceList = {Tropa: 0, Amarelo: 1, Azul: 2};
+	this.droneAppearances = [];
+	this.currDroneAppearance = this.droneAppearanceList[0];
 	
+	for(i = 0; i < this.droneAppearanceList.lenght;i++){
+		this.droneAppearances.push(new MyDroneAppearance(this,this.droneAppearanceList[i]));
+	}
+	
+	
+	
+	//this.body = new MyBodyDrone(this, this.droneAppearances[0]);
 };
 
 LightingScene.prototype.initCameras = function() {
@@ -324,10 +330,11 @@ LightingScene.prototype.display = function() {
 	this.drone.display();
 	this.popMatrix();
 
-//BOX
- 	this.pushMatrix();
- 	this.drone.boxdisplay();
- 	this.popMatrix();
+	//BOX
+	this.pushMatrix();
+	this.popMatrix();
+
+
 	// ---- END Primitive drawing section
 
 };
@@ -337,6 +344,7 @@ LightingScene.prototype.update = function(currTime) {
  	this.clock.update(currTime);
  	this.drone.update(currTime);
 };
+
 /*
 LightingScene.prototype.updateDrone = function() {
  	if(this.Option1 == true){

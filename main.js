@@ -25,7 +25,9 @@ serialInclude([
 	'MyBodyDronePerna.js',
 	'MyHelice.js',
 	'MyHook.js',
-	
+	'MyBox.js',
+	'MyTarget.js',
+		
 	main=function() {
 		var app = new CGFapplication(document.body);
 		var myScene = new LightingScene();

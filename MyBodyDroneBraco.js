@@ -2,15 +2,12 @@
  * MyBodyDronebraco
  * @constructor
  */
-function MyBodyDroneBraco(scene){
+function MyBodyDroneBraco(scene, bracoAppearance){
 	CGFobject.call(this, scene);
    this.br = new MyCylinder(this.scene,20,20);
    this.base = new MyBodyDroneBracoBase(this.scene);
- /*  this.bracoAppearance = bracoAppearance;
-  
-   	this.bracoFrente = new CGFappearance(this);
-	this.bracoFrente.loadTexture("bracoFrente.png");
-*/
+   this.bracoAppearance = bracoAppearance;
+
 }
 
  MyBodyDroneBraco.prototype = Object.create(CGFobject.prototype);
@@ -18,29 +15,30 @@ function MyBodyDroneBraco(scene){
 
 MyBodyDroneBraco.prototype.display = function() {
 
-	//Base 1 do braco
-	this.scene.pushMatrix();
-		this.scene.translate(0,0.1,-1.65);
-		this.base.display();
-	this.scene.popMatrix();
+this.scene.pushMatrix();
+//Base 1 do braco
+this.scene.pushMatrix();
+this.scene.translate(0,0.1,-1.65);
+this.base.display();
+this.scene.popMatrix();
 
-	//Base 2 do braco
-	this.scene.pushMatrix();
-		this.scene.translate(0,0.1,1.65);
-		this.base.display();
-	this.scene.popMatrix();
+//Base 2 do braco
+this.scene.pushMatrix();
+this.scene.translate(0,0.1,1.65);
+this.base.display();
+this.scene.popMatrix();
 
-	//Base 3 do braco
-	this.scene.pushMatrix();
-		this.scene.translate(-1.65,0.1,0);
-		this.base.display();
-	this.scene.popMatrix();
+//Base 3 do braco
+this.scene.pushMatrix();
+this.scene.translate(-1.65,0.1,0);
+this.base.display();
+this.scene.popMatrix();
 
-	//Base 4 do braco
-	this.scene.pushMatrix();
-		this.scene.translate(1.65,0.1,0);
-		this.base.display();
-	this.scene.popMatrix();
+//Base 4 do braco
+this.scene.pushMatrix();
+this.scene.translate(1.65,0.1,0);
+this.base.display();
+this.scene.popMatrix();
 
 
 //Braco 1
@@ -58,6 +56,8 @@ MyBodyDroneBraco.prototype.display = function() {
 		this.scene.scale(0.1,0.1,3);
 		this.br.display();
 	this.scene.popMatrix();
+this.bracoAppearance.apply();
+this.scene.popMatrix();
 
 
 }
@@ -75,26 +75,26 @@ function MyBodyDroneBracoBase(scene){
 MyBodyDroneBracoBase.prototype.display = function() {
 
 	//Cilindro da base do braco
-	this.scene.pushMatrix();
-		this.scene.rotate(Math.PI/2,1,0,0);
-		this.scene.scale(0.2,0.2,0.3);
-		this.scene.pushMatrix();
-	this.br.display();
+this.scene.pushMatrix();
+this.scene.rotate(Math.PI/2,1,0,0);
+this.scene.scale(0.2,0.2,0.3);
+this.scene.pushMatrix();
+this.br.display();
 
 //Base 1 da base do braco
-	this.scene.pushMatrix();
-		this.scene.scale()
-		this.scene.translate(0,0,0.5);
-		this.scene.rotate(Math.PI,1,0,0);
-		this.base.display();
-	this.scene.popMatrix();
+this.scene.pushMatrix();
+this.scene.scale()
+this.scene.translate(0,0,0.5);
+this.scene.rotate(Math.PI,1,0,0);
+this.base.display();
+this.scene.popMatrix();
 
 
 //Base 2 da base do braco
-	this.scene.pushMatrix();
-		this.scene.translate(0,0,-0.5);
-		this.base.display();
-		this.scene.popMatrix();
-		this.scene.popMatrix();
-	this.scene.popMatrix();
+this.scene.pushMatrix();
+this.scene.translate(0,0,-0.5);
+this.base.display();
+this.scene.popMatrix();
+this.scene.popMatrix();
+this.scene.popMatrix();
 }

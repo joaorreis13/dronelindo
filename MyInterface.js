@@ -96,7 +96,7 @@ MyInterface.prototype.processKeyDown = function(event) {
 			//anda para tras
 			this.scene.drone.move('Tras');
 			this.scene.drone.updateVelocidadeHelice(0.2,10,-1);
-			this.scene.drone.updateInclinacao(-1);
+			this.scene.drone.updateInclinacao(-2);
 			break;
 		//W & w
 		case(87):
@@ -104,7 +104,7 @@ MyInterface.prototype.processKeyDown = function(event) {
 			//anda para a frente
 			this.scene.drone.move('Frente');
 			this.scene.drone.updateVelocidadeHelice(10,0.2,-1);
-			this.scene.drone.updateInclinacao(1);
+			this.scene.drone.updateInclinacao(2);
 			break;
 		//I & i
 		case(73):
@@ -115,7 +115,7 @@ MyInterface.prototype.processKeyDown = function(event) {
 		break;
 		case(74):
 		case(106):
-		//descer j & J
+		//descer
 		this.scene.drone.move('Baixo');
 		this.scene.drone.updateVelocidadeHelice(1,1,-1);
 		break;
@@ -197,7 +197,7 @@ MyInterface.prototype.processKeyUp = function(event) {
 		case(112):
 		case(80):
 		this.scene.drone.para('Encolhe');
-		break;
+		break;	
 			default:
 			this.scene.drone.updateVelocidadeHelice(1,1,-1);
 			
