@@ -33,7 +33,7 @@ CGFinterface.prototype.init.call(this, application);
 	
 	//Grupo da texturas
 	var textureGroup = this.gui.addFolder("Texturas");
-	textureGroup.add(this.scene, 'droneAppearanceList', this.scene.droneAppearanceList);
+	textureGroup.add(this.scene, 'droneAppearance', this.scene.droneAppearanceList);
 	textureGroup.open();
 	// add a group of controls (and open/expand by defult)
 	

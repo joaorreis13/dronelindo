@@ -14,7 +14,6 @@ function MyBodyDroneHelice(scene,vel){
 }
 MyBodyDroneHelice.prototype.display = function(){
 	this.scene.pushMatrix();
-//	this.scene.rotate(this.angle * degToRad,0,1,0);
 	this.helice.display();
 	this.scene.popMatrix();
 }

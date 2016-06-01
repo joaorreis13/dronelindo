@@ -2,11 +2,11 @@
  * MyBodyDronebraco
  * @constructor
  */
-function MyBodyDroneBraco(scene, bracoAppearance){
+function MyBodyDroneBraco(scene){
 	CGFobject.call(this, scene);
    this.br = new MyCylinder(this.scene,20,20);
    this.base = new MyBodyDroneBracoBase(this.scene);
-   this.bracoAppearance = bracoAppearance;
+
 
 }
 
@@ -56,7 +56,6 @@ this.scene.popMatrix();
 		this.scene.scale(0.1,0.1,3);
 		this.br.display();
 	this.scene.popMatrix();
-this.bracoAppearance.apply();
 this.scene.popMatrix();
 
 

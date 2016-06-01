@@ -4,20 +4,20 @@
  */
  
    var degToRad = Math.PI /180;
-function MyDrone(scene, appearence) {
+function MyDrone(scene, droneAppearance) {
     CGFobject.call(this, scene);
         this.velocidade_helice_tras = 1;
 	this.velocidade_helice_lados = -1;
 	this.velocidade_helice_frente = 1;
-    this.appearence = appearence;
+    
      	this.inclinacao = 0;
 	
  
-    this.drone = new MyBodyDrone(this.scene,this.appearence);
+   
     
 	//Adicionar hook
 
-	this.hook = new MyHook(this.scene);
+	
 	this.aux;
     this.x = 7.5;
     this.y = 5;
@@ -32,9 +32,8 @@ function MyDrone(scene, appearence) {
   	this.targetX=10;
   	this.targetY=0.1;
   	this.targetZ=3;
-	this.caixa = new MyBox(this.scene,this.boxX,this.boxY,this.boxZ);
-    this.target = new MyTarget(this.scene,this.targetX,this.targetY,this.targetZ);
-    this.drone.initBuffers();
+	this.droneAppearance = droneAppearance;
+  
 	
 
 	//Texturas
@@ -46,67 +45,70 @@ function MyDrone(scene, appearence) {
  	this.bodyMat[0].setDiffuse(1,1,1,1);
 	this.bodyMat[0].setSpecular(0.5,0.5,0.5,1);
 	this.bodyMat[0].setShininess(1);
-	this.bodyMat[0].loadTexture("verde_corpo.jpg")
+	this.bodyMat[0].loadTexture("../resources/images/verde_corpo.jpg");
 	
 	this.legMat[0].setDiffuse(1,1,1,1);
 	this.legMat[0].setSpecular(0.5,0.5,0.5,1);
 	this.legMat[0].setShininess(1);
-	this.legMat[0].loadTexture("verde_perna.jpg")
+	this.legMat[0].loadTexture("../resources/images/verde_perna.jpg");
 
 	this.heliceMat[0].setDiffuse(1,1,1,1);
 	this.heliceMat[0].setSpecular(0.5,0.5,0.5,1);
 	this.heliceMat[0].setShininess(1);
-	this.heliceMat[0].loadTexture("verde_helice.jpg")
+	this.heliceMat[0].loadTexture("../resources/images/verde_helice.jpg");
 
 	this.armMat[0].setDiffuse(1,1,1,1);
 	this.armMat[0].setSpecular(0.5,0.5,0.5,1);
 	this.armMat[0].setShininess(1);
-	this.armMat[0].loadTexture("verde_braco.png")   
+	this.armMat[0].loadTexture("../resources/images/verde_braco.png");   
     
  	this.bodyMat[1].setDiffuse(1,1,1,1);
 	this.bodyMat[1].setSpecular(0.5,0.5,0.5,1);
 	this.bodyMat[1].setShininess(1);
-	this.bodyMat[1].loadTexture("amarelo.png")
+	this.bodyMat[1].loadTexture("../resources/images/amarelo.png");
 
 	this.legMat[1].setDiffuse(1,1,1,1);
 	this.legMat[1].setSpecular(0.5,0.5,0.5,1);
 	this.legMat[1].setShininess(1);
-	this.legMat[1].loadTexture("amarelo.png")
+	this.legMat[1].loadTexture("../resources/images/amarelo.png");
 
 	this.heliceMat[1].setDiffuse(1,1,1,1);
 	this.heliceMat[1].setSpecular(0.5,0.5,0.5,1);
 	this.heliceMat[1].setShininess(1);
-	this.heliceMat[1].loadTexture("amarelo.png")
+	this.heliceMat[1].loadTexture("../resources/images/amarelo.png");
 
 	this.armMat[1].setDiffuse(1,1,1,1);
 	this.armMat[1].setSpecular(0.5,0.5,0.5,1);
 	this.armMat[1].setShininess(1);
-	this.armMat[1].loadTexture("amarelo.png")
+	this.armMat[1].loadTexture("../resources/images/amarelo.png");
 
  	this.bodyMat[2].setDiffuse(1,1,1,1);
 	this.bodyMat[2].setSpecular(0.5,0.5,0.5,1);
 	this.bodyMat[2].setShininess(1);
-	this.bodyMat[2].loadTexture("azul_corpo.png")
+	this.bodyMat[2].loadTexture("../resources/images/azul_corpo.png");
 
 	this.legMat[2].setDiffuse(1,1,1,1);
 	this.legMat[2].setSpecular(0.5,0.5,0.5,1);
 	this.legMat[2].setShininess(1);
-	this.legMat[2].loadTexture("azul_perna.png")
+	this.legMat[2].loadTexture("../resources/images/azul_perna.png");
 
 	this.heliceMat[2].setDiffuse(1,1,1,1);
 	this.heliceMat[2].setSpecular(0.5,0.5,0.5,1);
 	this.heliceMat[2].setShininess(1);
-	this.heliceMat[2].loadTexture("azul_helice.jpg")
+	this.heliceMat[2].loadTexture("../resources/images/azul_helice.jpg");
 
 	this.armMat[2].setDiffuse(1,1,1,1);
 	this.armMat[2].setSpecular(0.5,0.5,0.5,1);
 	this.armMat[2].setShininess(1);
-	this.armMat[2].loadTexture("azul.png")
+	this.armMat[2].loadTexture("../resources/images/azul.png");
 	
- 
+ 	 this.drone = new MyBodyDrone(this.scene,this.bodyMat, this.armMat, this.heliceMat, this.legMat, this.droneAppearance);
+ 	 this.caixa = new MyBox(this.scene,this.boxX,this.boxY,this.boxZ, this.droneAppearance);
+    this.target = new MyTarget(this.scene,this.targetX,this.targetY,this.targetZ,this.droneAppearance);
+    this.hook = new MyHook(this.scene);
 
-}
-;
+  this.drone.initBuffers();
+};
 
 //(0.5, 0.3, 0), (-0.5, 0.3, 0), (0, 0.3, 2), ou seja, um
 //triângulo a apontar para +ZZ.
@@ -115,24 +117,38 @@ MyDrone.prototype = Object.create(CGFobject.prototype);
 MyDrone.prototype.constructor = MyDrone;
 
 MyDrone.prototype.display = function() {
+	
+	this.scene.materialDefault.apply();
 	this.scene.pushMatrix();
     this.scene.translate(this.x, this.y, this.z);
     this.scene.rotate(this.ang, 0, 1, 0);
+    this.scene.materialDefault.apply();
     this.scene.pushMatrix();
     this.scene.rotate(this.inclinacao*degToRad,1,0,0);
-    //this.bodyMat[this.scene.Textures].apply();
+    this.bodyMat[this.scene.currDroneAppearance].apply();
     this.drone.display();
     this.scene.popMatrix();
-    this.
+    this.scene.popMatrix();
+
+
+	this.scene.materialDefault.apply();
+    this.scene.pushMatrix();
+    //this.armMat[this.scene.droneAppearance].apply();
+    //this.heliceMat[this.scene.droneAppearance].apply();
     this.hook.display();
     this.scene.popMatrix();
+   
+
+    this.scene.materialDefault.apply();
 	this.scene.pushMatrix();
-	
 	this.target.display();
 	this.scene.popMatrix();
+
+	this.scene.materialDefault.apply();
     this.scene.pushMatrix();
 	this.caixa.display();
 	this.scene.popMatrix();
+
 
 	
 };
@@ -241,13 +257,19 @@ MyDrone.prototype.verificaColisao = function(){
 }
 
 MyDrone.prototype.verificaTarget = function(){
-	console.log("box "+this.boxX);
-	console.log("target "+ this.targetX);
-	this.dist=Math.sqrt(((this.targetX-this.boxX)*(this.targetX-this.boxX))+((this.targetY-this.boxY)*(this.targetY-this.boxY))+((this.targetZ-this.boxZ)*(this.targetZ-this.boxZ)));
 
-	console.log(this.dist);
+	this.distX = this.targetX-this.boxX;
+	this.distX *= this.distX;
+
+	this.distY = this.targetY - this.boxY;
+	this.distY *= this.distY;
+
+	this.distZ = this.targetZ - this.boxZ;
+	this.distZ *= this.distZ;
+
+	this.dist = Math.sqrt(this.distX + this.distY + this.distZ);
+
 	if(this.dist<0.4){
-	console.log("perto ENTROU");
 	this.target.targetCarga=true;
 }
 }

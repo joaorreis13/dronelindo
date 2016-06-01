@@ -19,6 +19,7 @@
 	this.indices = [];
  	this.vertices = [];
  	this.normals = [];
+ 	this.texCoords = [];
 
 	var angle_height = Math.PI/2/this.stacks;
 	var angle = 2*Math.PI/this.slices;
@@ -32,6 +33,7 @@
 		{
 			this.vertices.push(Math.sin(angulo)*Math.cos(slice*angle), Math.sin(angulo)*Math.sin(slice*angle), Math.cos(angulo));
 			this.normals.push(Math.sin(angulo)*Math.cos(slice*angle), Math.sin(angulo)*Math.sin(slice*angle), Math.cos(angulo));
+			this.texCoords.push(Math.cos(angle*slice) * Math.cos(angle_height*stack) * 0.5 + 0.5, Math.sin(angle*slice) * Math.cos(angle_height*stack) * 0.5 + 0.5);
 		}
 	}
 	

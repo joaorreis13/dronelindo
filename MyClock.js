@@ -31,7 +31,7 @@
 	this.segundos.setAngle(270);
 
 	this.clockAppearance = new CGFappearance(this.scene);
-	this.clockAppearance.loadTexture("clock.png");
+	this.clockAppearance.loadTexture("../resources/images/clock.png");
 	this.clockAppearance.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 	this.clockAppearance.setSpecular(0.2, 0.2, 0.2, 1);
 	this.clockAppearance.setShininess(10);
